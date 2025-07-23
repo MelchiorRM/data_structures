@@ -9,6 +9,9 @@ void intermediateMenu();
 void listToListMenu();
 void selectListMenu();
 
+void editMenuHandler();
+SinglyLinked S_LIST_A, S_LIST_B;
+
 void showMenu(){
     cout<<"\n--- Linked List Operations Menu ---\n";
     cout<<"1. Create a new linked list\n";
@@ -38,6 +41,47 @@ void editMenu(){
     cout<<"0. Back to Main Menu\n";
     cout<<"Choice: ";
 }
+void editMenuHandler(){
+    int editChoice;
+    while(true) {
+        editMenu();
+        cin>>editChoice;
+        switch(editChoice){
+            case 1:
+                cout<<"Insert value at Beginning: ";
+                int valueAtBeginning;
+                cin>>valueAtBeginning;
+                cout<<"\n";
+                S_LIST_A.insertAtBeginning(valueAtBeginning);
+                S_LIST_A.display();
+                cout<<"\n";
+                break;
+            case 2:
+                cout<<"Insert value at End: ";
+                int valueAtEnd;
+                cin>>valueAtEnd;
+                cout<<"\n";
+                S_LIST_A.insertAtEnd(valueAtEnd);
+                S_LIST_A.display();
+                cout<<"\n";
+                break;
+            case 4:
+                cout<<"Delete at the Beginning...\n";
+                S_LIST_A.deleteAtBeginning();
+                S_LIST_A.display();
+                break;
+            case 5:
+                cout<<"Delete at the End...\n";
+                S_LIST_A.deleteAtEnd();
+                S_LIST_A.display();
+                cout<<"\n";
+                break;
+            default:
+                cout<<"Invalid choice...\n";
+                
+        }
+    }
+}
 void intermediateMenu(){
     cout<<"\n---Intermediate operations---\n";
     cout<<"1. Find Middle Node\n";
@@ -59,7 +103,6 @@ void selectListMenu() {
     cout<<"Choice: ";
 }
 int main(){
-    SinglyLinked S_LIST_A, S_LIST_B, S_LIST_C;
     int mainChoice;
     do{
         showMenu();
@@ -71,9 +114,13 @@ int main(){
                 break;
             case 3:
                 cout<<"Displaying a linked list...\n";
-                S_LIST_A.display();     
+                S_LIST_A.display();
+                break;
+            case 4:
+                editMenuHandler();
+                break; 
             default:
-                cout<<"Invalid choice\n";
+                cout<<"Invalid choice...\n";
         }
     } while (mainChoice !=0);
     return 0;
