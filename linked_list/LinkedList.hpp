@@ -10,7 +10,7 @@ class LinkedList {
         virtual void deleteAtPosition(int position) = 0;
         virtual void createList(int size)=0;
         virtual void display() const = 0;
-        virtual void search(int value) const = 0;
+        virtual bool search(int value) const = 0;
         virtual void updateAtPosition(int position, int newValue)=0;
         virtual void updateNodeValue(int oldValue, int newValue)=0;
         virtual void free()=0;

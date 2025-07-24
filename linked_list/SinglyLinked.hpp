@@ -23,7 +23,7 @@ class SinglyLinked : public LinkedList {
         void deleteAtPosition(int position) override;
         void createList(int size) override;
         void display() const override;
-        void search(int value) const override;
+        bool search(int value) const override;
         void updateAtPosition(int position, int newValue) override;
         void updateNodeValue(int oldValue, int newValue) override;
         void free();

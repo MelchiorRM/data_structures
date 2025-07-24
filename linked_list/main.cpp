@@ -33,11 +33,12 @@ void editMenu(){
     cout<<"5. Delete at End\n";
     cout<<"6. Delete at Position\n";
     cout<<"7. Search for Element\n";
-    cout<<"8. Update Node Value\n";
-    cout<<"9. Count Nodes\n";
-    cout<<"10. Reverse List\n";
-    cout<<"11. Sort List\n";
-    cout<<"12. Delete Entire List\n";
+    cout<<"8. Update Node by Value\n";
+    cout<<"9. Update Node by Position\n";
+    cout<<"10. Count Nodes\n";
+    cout<<"11. Reverse List\n";
+    cout<<"12. Sort List\n";
+    cout<<"13. Delete Entire List\n";
     cout<<"0. Back to Main Menu\n";
     cout<<"Choice: ";
 }
@@ -71,10 +72,10 @@ void editMenuHandler(){
                 int position,value;
                 cout<<"Enter the position where you want to add a new value: ";
                 cin>>position;
-                cout<<"/n";
+                cout<<"\n";
                 cout<<"Enter the value: ";
                 cin>>value;
-                cout<<"/n";
+                cout<<"\n";
                 S_LIST_A.insertAtPosition(value,position);
                 S_LIST_A.display();
                 }
@@ -89,6 +90,59 @@ void editMenuHandler(){
                 S_LIST_A.deleteAtEnd();
                 S_LIST_A.display();
                 cout<<"\n";
+                break;
+            case 6:
+                cout<<"Insert at a chosen position...\n";
+                {
+                int position;
+                cin>>position;
+                cout<<"\n";
+                S_LIST_A.deleteAtPosition(position);
+                S_LIST_A.display();
+                }
+                break;
+            case 7:
+                cout<<"Search if a value exists in the list...\n";
+                {
+                    int value;
+                    cout<<"Enter the value to be searched: ";
+                    cin>>value;
+                    cout<<"\n";
+                    if(S_LIST_A.search(value)){
+                        cout<<value<<" is found in the list.\n";
+                    }
+                    else{
+                        cout<<value<<" is not found in the list.\n";
+                    }
+                }
+                break;
+            case 8:
+                cout<<"Update One Node by Value...\n";
+                {
+                    int oldV,newV;
+                    cout<<"Enter old value that you want to change: \n";
+                    cin>>oldV;
+                    cout<<"\n";
+                    cout<<"Enter the new value of that node: ";
+                    cin>>newV;
+                    cout<<"\n";
+                    S_LIST_A.updateNodeValue(oldV,newV);
+                    S_LIST_A.display();
+                }
+                break;
+            case 9:
+                cout<<"Update one Node by Position...\n";
+                {
+                    int position,newV;
+                    cout<<"Enter the position of the old value that you want to change: \n";
+                    cin>>position;
+                    cout<<"\n";
+                    cout<<"Enter the new value of that node: ";
+                    cin>>newV;
+                    cout<<"\n";
+                    S_LIST_A.updateAtPosition(position,newV);
+                    S_LIST_A.display();
+                }
                 break;
             default:
                 cout<<"Invalid choice...\n";

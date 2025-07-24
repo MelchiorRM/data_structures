@@ -69,7 +69,25 @@ void SinglyLinked::deleteAtEnd(){
     temp->next_data=nullptr;
 }
 void SinglyLinked::deleteAtPosition(int position){
-
+    if(head==nullptr){
+        cout<<"Empty list, nothing to delete...\n";
+        return;
+    }
+    if(position==0){
+        deleteAtBeginning();
+        return;
+    }
+    Node* temp=head;
+    for(int i=0;i<position-1 && temp !=nullptr;i++){
+        temp=temp->next_data;
+    }
+    if(temp->next_data==nullptr){
+        cout<<"Position is out of range...\n";
+        return;
+    }
+    Node* nodeToDelete = temp->next_data;
+    temp->next_data = nodeToDelete->next_data;
+    delete nodeToDelete;
 }
 void SinglyLinked::createList(int size) {
     Node* head = nullptr;
@@ -95,14 +113,39 @@ void SinglyLinked::display() const {
     }
     cout<<"NULL\n";
 }
-void SinglyLinked::search(int value) const{
-
+bool SinglyLinked::search(int value) const{
+    const Node* temp = head;
+    while(temp!=nullptr){
+        if(temp->data==value){
+            return true;
+        }
+        temp=temp->next_data;
+    }
+    return false;
 }
 void SinglyLinked::updateAtPosition(int position, int newValue){
-
+    Node* temp=head;
+    int tempPosition=0;
+    while(temp!=nullptr && tempPosition<position){
+        temp=temp->next_data;
+        tempPosition++;
+    }
+    if(temp!=nullptr){
+        temp->data=newValue;
+    } else {
+        cout<<"Position is out range...\n";
+    }
 }
 void SinglyLinked::updateNodeValue(int oldValue, int newValue){
-
+    Node* temp=head;
+    while(temp!=nullptr){
+        if(temp->data=oldValue){
+            temp->data=newValue;
+            return;
+        }
+        temp=temp->next_data;
+    }
+    cout<<"Value not found...\n";
 }
 void SinglyLinked::free(){
     Node* temp;
