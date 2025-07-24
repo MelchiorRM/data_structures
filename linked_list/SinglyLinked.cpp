@@ -25,7 +25,22 @@ void SinglyLinked::insertAtEnd(int value){
 
 }
 void SinglyLinked::insertAtPosition(int value, int position){
-
+    Node* newNode = new Node(value);
+    if(position==0){
+        insertAtBeginning(value);
+        return;
+    }
+    Node* temp=head;
+    for(int i=0;i<position-1 && temp !=nullptr;i++){
+        temp=temp->next_data;
+    }
+    if(temp==nullptr){
+        cout<<"Position is out of range...\n";
+        delete newNode;
+        return;
+    }
+    newNode->next_data=temp->next_data;
+    temp->next_data=newNode;
 }
 void SinglyLinked::deleteAtBeginning(){
     if(head==nullptr){

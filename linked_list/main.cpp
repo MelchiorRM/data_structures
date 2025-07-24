@@ -65,6 +65,20 @@ void editMenuHandler(){
                 S_LIST_A.display();
                 cout<<"\n";
                 break;
+            case 3:
+                cout<<"Insert at a chosen position....\n";
+                {
+                int position,value;
+                cout<<"Enter the position where you want to add a new value: ";
+                cin>>position;
+                cout<<"/n";
+                cout<<"Enter the value: ";
+                cin>>value;
+                cout<<"/n";
+                S_LIST_A.insertAtPosition(value,position);
+                S_LIST_A.display();
+                }
+                break;
             case 4:
                 cout<<"Delete at the Beginning...\n";
                 S_LIST_A.deleteAtBeginning();
@@ -78,7 +92,7 @@ void editMenuHandler(){
                 break;
             default:
                 cout<<"Invalid choice...\n";
-                
+                break;
         }
     }
 }
