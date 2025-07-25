@@ -36,7 +36,6 @@ void editMenu(){
     cout<<"8. Update Node by Value\n";
     cout<<"9. Update Node by Position\n";
     cout<<"10. Count Nodes\n";
-    cout<<"11. Reverse List\n";
     cout<<"12. Sort List\n";
     cout<<"13. Delete Entire List\n";
     cout<<"0. Back to Main Menu\n";
@@ -155,13 +154,23 @@ void intermediateMenu(){
     cout<<"1. Find Middle Node\n";
     cout<<"2. Remove duplicates\n";
     cout<<"3. Swap two nodes\n";
-    cout<<"4. Find Nth from the end\n";
+    cout<<"4. Reverse List\n";
     cout<<"0. Back to Main Menu\n";
     cout<<"Choice: ";
 }
 void listToListMenu(){
     cout<<"\n--- List-to-List Operations ---\n";
+    cout<<"1. Concatenate Two Lists\n";
+    cout<<"2. Copy/Clone a List\n";
+    cout<<"3. Merge Two Sorted Lists\n";
+    cout<<"4. Compare Two Lists\n";
+    cout<<"5. Intersection of Two Lists\n";
+    cout<<"6. Union of Two Lists\n";
+    cout<<"7. Difference of Two Lists\n";
+    cout<<"8. Alternate Merge\n";
+    cout<<"9. Swap Contents\n";
     cout<<"0. Back to Main Menu\n";
+    cout<<"Choice: ";
 }
 void selectListMenu() {
     cout<<"\n---Select Linked List---\n";
@@ -170,6 +179,74 @@ void selectListMenu() {
     cout<<"3. Circular Linked List\n";
     cout<<"Choice: ";
 }
+
+void intermediateMenuHandler() {
+    int choice;
+    while (true) {
+        intermediateMenu();
+        cin >> choice;
+        switch (choice) {
+            case 1:
+                cout << "Find Middle Node: Not implemented yet.\n";
+                break;
+            case 2:
+                cout << "Remove duplicates: Not implemented yet.\n";
+                break;
+            case 3:
+                cout << "Swap two nodes: Not implemented yet.\n";
+                break;
+            case 4:
+                cout << "Reverse List: Not implemented yet.\n";
+                break;
+            case 0:
+                return;
+            default:
+                cout << "Invalid choice.\n";
+        }
+    }
+}
+
+void listToListMenuHandler() {
+    int choice;
+    while (true) {
+        listToListMenu();
+        cin >> choice;
+        switch (choice) {
+            case 1:
+                cout << "Concatenate Two Lists: Not implemented yet.\n";
+                break;
+            case 2:
+                cout << "Copy/Clone a List: Not implemented yet.\n";
+                break;
+            case 3:
+                cout << "Merge Two Sorted Lists: Not implemented yet.\n";
+                break;
+            case 4:
+                cout << "Compare Two Lists: Not implemented yet.\n";
+                break;
+            case 5:
+                cout << "Intersection of Two Lists: Not implemented yet.\n";
+                break;
+            case 6:
+                cout << "Union of Two Lists: Not implemented yet.\n";
+                break;
+            case 7:
+                cout << "Difference of Two Lists: Not implemented yet.\n";
+                break;
+            case 8:
+                cout << "Alternate Merge: Not implemented yet.\n";
+                break;
+            case 9:
+                cout << "Swap Contents: Not implemented yet.\n";
+                break;
+            case 0:
+                return;
+            default:
+                cout << "Invalid choice.\n";
+        }
+    }
+}
+
 int main(){
     int mainChoice;
     do{
@@ -186,7 +263,13 @@ int main(){
                 break;
             case 4:
                 editMenuHandler();
-                break; 
+                break;
+            case 5:
+                intermediateMenuHandler();
+                break;
+            case 6:
+                listToListMenuHandler();
+                break;
             default:
                 cout<<"Invalid choice...\n";
         }

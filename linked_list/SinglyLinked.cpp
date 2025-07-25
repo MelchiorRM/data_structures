@@ -147,6 +147,21 @@ void SinglyLinked::updateNodeValue(int oldValue, int newValue){
     }
     cout<<"Value not found...\n";
 }
+void SinglyLinked::reverse() {}
+int SinglyLinked::findMiddle() const { return 0; }
+void SinglyLinked::removeDuplicates() {}
+void SinglyLinked::swapNodes(int pos1, int pos2) {}
+int SinglyLinked::countNodes() const { return 0; }
+void SinglyLinked::sort() {}
+SinglyLinked* SinglyLinked::clone() const { return nullptr; }
+bool SinglyLinked::compare(const LinkedList& other) const { return false; }
+SinglyLinked* SinglyLinked::mergeSorted(const LinkedList& other) const { return nullptr; }
+void SinglyLinked::concatenate(const LinkedList& other) {}
+SinglyLinked* SinglyLinked::intersection(const LinkedList& other) const { return nullptr; }
+SinglyLinked* SinglyLinked::unionWith(const LinkedList& other) const { return nullptr; }
+SinglyLinked* SinglyLinked::difference(const LinkedList& other) const { return nullptr; }
+SinglyLinked* SinglyLinked::alternateMerge(const LinkedList& other) const { return nullptr; }
+void SinglyLinked::swapContents(LinkedList& other) {}
 void SinglyLinked::free(){
     Node* temp;
     while(head!=nullptr) {

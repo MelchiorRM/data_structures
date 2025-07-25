@@ -26,6 +26,21 @@ class SinglyLinked : public LinkedList {
         bool search(int value) const override;
         void updateAtPosition(int position, int newValue) override;
         void updateNodeValue(int oldValue, int newValue) override;
+        void reverse() override;
+        int findMiddle() const override;
+        void removeDuplicates() override;
+        void swapNodes(int pos1, int pos2) override;
+        int countNodes() const override;
+        void sort() override;
+        SinglyLinked* clone() const override;
+        bool compare(const LinkedList& other) const override;
+        SinglyLinked* mergeSorted(const LinkedList& other) const override;
+        void concatenate(const LinkedList& other) override;
+        SinglyLinked* intersection(const LinkedList& other) const override;
+        SinglyLinked* unionWith(const LinkedList& other) const override;
+        SinglyLinked* difference(const LinkedList& other) const override;
+        SinglyLinked* alternateMerge(const LinkedList& other) const override;
+        void swapContents(LinkedList& other) override;
         void free();
 };
 #endif
