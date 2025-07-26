@@ -11,11 +11,9 @@ void editMenu();
 void intermediateMenu();
 void listToListMenu();
 void selectListMenu();
-
 void editMenuHandler();
-SinglyLinked S_LIST_A;
-DoublyLinked D_LIST_A;
-CircularLinked C_LIST_A;
+
+LinkedList* currentList = nullptr;
 
 void showMenu(){
     cout<<"\n--- Linked List Operations Menu ---\n";
@@ -41,12 +39,40 @@ void editMenu(){
     cout<<"8. Update Node by Value\n";
     cout<<"9. Update Node by Position\n";
     cout<<"10. Count Nodes\n";
-    cout<<"12. Sort List\n";
-    cout<<"13. Delete Entire List\n";
     cout<<"0. Back to Main Menu\n";
     cout<<"Choice: ";
 }
+void selectListHandler() {
+    int choice;
+    selectListMenu();
+    cin >> choice;
+    if (currentList) {
+        currentList->free();
+        delete currentList;
+        currentList = nullptr;
+    }
+    switch(choice) {
+        case 1:
+            currentList = new SinglyLinked();
+            cout << "Singly Linked List selected.\n";
+            break;
+        case 2:
+            currentList = new DoublyLinked();
+            cout << "Doubly Linked List selected.\n";
+            break;
+        case 3:
+            currentList = new CircularLinked();
+            cout << "Circular Linked List selected.\n";
+            break;
+        default:
+            cout << "Invalid choice.\n";
+    }
+}
 void editMenuHandler(){
+    if (!currentList) {
+        cout << "No list selected. Please create or select a list first.\n";
+        return;
+    }
     int editChoice;
     while(true) {
         editMenu();
@@ -57,8 +83,8 @@ void editMenuHandler(){
                 int valueAtBeginning;
                 cin>>valueAtBeginning;
                 cout<<"\n";
-                S_LIST_A.insertAtBeginning(valueAtBeginning);
-                S_LIST_A.display();
+                currentList->insertAtBeginning(valueAtBeginning);
+                currentList->display();
                 cout<<"\n";
                 break;
             case 2:
@@ -66,8 +92,8 @@ void editMenuHandler(){
                 int valueAtEnd;
                 cin>>valueAtEnd;
                 cout<<"\n";
-                S_LIST_A.insertAtEnd(valueAtEnd);
-                S_LIST_A.display();
+                currentList->insertAtEnd(valueAtEnd);
+                currentList->display();
                 cout<<"\n";
                 break;
             case 3:
@@ -80,29 +106,29 @@ void editMenuHandler(){
                 cout<<"Enter the value: ";
                 cin>>value;
                 cout<<"\n";
-                S_LIST_A.insertAtPosition(value,position);
-                S_LIST_A.display();
+                currentList->insertAtPosition(value,position);
+                currentList->display();
                 }
                 break;
             case 4:
                 cout<<"Delete at the Beginning...\n";
-                S_LIST_A.deleteAtBeginning();
-                S_LIST_A.display();
+                currentList->deleteAtBeginning();
+                currentList->display();
                 break;
             case 5:
                 cout<<"Delete at the End...\n";
-                S_LIST_A.deleteAtEnd();
-                S_LIST_A.display();
+                currentList->deleteAtEnd();
+                currentList->display();
                 cout<<"\n";
                 break;
             case 6:
-                cout<<"Insert at a chosen position...\n";
+                cout<<"Delete at a chosen position...\n";
                 {
                 int position;
                 cin>>position;
                 cout<<"\n";
-                S_LIST_A.deleteAtPosition(position);
-                S_LIST_A.display();
+                currentList->deleteAtPosition(position);
+                currentList->display();
                 }
                 break;
             case 7:
@@ -112,7 +138,7 @@ void editMenuHandler(){
                     cout<<"Enter the value to be searched: ";
                     cin>>value;
                     cout<<"\n";
-                    if(S_LIST_A.search(value)){
+                    if(currentList->search(value)){
                         cout<<value<<" is found in the list.\n";
                     }
                     else{
@@ -130,8 +156,8 @@ void editMenuHandler(){
                     cout<<"Enter the new value of that node: ";
                     cin>>newV;
                     cout<<"\n";
-                    S_LIST_A.updateNodeValue(oldV,newV);
-                    S_LIST_A.display();
+                    currentList->updateNodeValue(oldV,newV);
+                    currentList->display();
                 }
                 break;
             case 9:
@@ -144,10 +170,17 @@ void editMenuHandler(){
                     cout<<"Enter the new value of that node: ";
                     cin>>newV;
                     cout<<"\n";
-                    S_LIST_A.updateAtPosition(position,newV);
-                    S_LIST_A.display();
+                    currentList->updateAtPosition(position,newV);
+                    currentList->display();
                 }
                 break;
+            case 10:
+                cout<<"Count the numbers of nodes in the linked list...\n";
+                {
+                    cout<<"The current list has "<<currentList->countNodes()<<" nodes\n";
+                }
+            case 0:
+                return;
             default:
                 cout<<"Invalid choice...\n";
                 break;
@@ -160,6 +193,7 @@ void intermediateMenu(){
     cout<<"2. Remove duplicates\n";
     cout<<"3. Swap two nodes\n";
     cout<<"4. Reverse List\n";
+    cout<<"5. Sort List\n";
     cout<<"0. Back to Main Menu\n";
     cout<<"Choice: ";
 }
@@ -259,25 +293,48 @@ int main(){
         cin>>mainChoice;
         switch(mainChoice){
             case 1:
-                cout<<"Creating a new linked list...\n";
-                S_LIST_A.createList(0);
+                selectListHandler();
+                if (currentList) {
+                    currentList->createList(0);
+                }
+                break;
+            case 2:
+                selectListHandler();
                 break;
             case 3:
-                cout<<"Displaying a linked list...\n";
-                S_LIST_A.display();
+                if (currentList) {
+                    cout<<"Displaying the current linked list...\n";
+                    currentList->display();
+                } else {
+                    cout<<"No list selected.\n";
+                }
                 break;
             case 4:
                 editMenuHandler();
                 break;
             case 5:
-                intermediateMenuHandler();
+                // TODO: update intermediateMenuHandler to use currentList
                 break;
             case 6:
-                listToListMenuHandler();
+                // TODO: update listToListMenuHandler to use currentList
+                break;
+            case 7:
+                if (currentList) {
+                    currentList->free();
+                    delete currentList;
+                    currentList = nullptr;
+                    cout << "Current list deleted.\n";
+                } else {
+                    cout << "No list to delete.\n";
+                }
                 break;
             default:
                 cout<<"Invalid choice...\n";
         }
     } while (mainChoice !=0);
+    if (currentList) {
+        currentList->free();
+        delete currentList;
+    }
     return 0;
 }

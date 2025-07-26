@@ -151,7 +151,15 @@ void SinglyLinked::reverse() {}
 int SinglyLinked::findMiddle() const { return 0; }
 void SinglyLinked::removeDuplicates() {}
 void SinglyLinked::swapNodes(int pos1, int pos2) {}
-int SinglyLinked::countNodes() const { return 0; }
+int SinglyLinked::countNodes() const {
+    int count = 0;
+    Node* temp=head;
+    while(temp!=nullptr){
+        count++;
+        temp=temp->next_data;
+    }
+    return count;
+}
 void SinglyLinked::sort() {}
 SinglyLinked* SinglyLinked::clone() const { return nullptr; }
 bool SinglyLinked::compare(const LinkedList& other) const { return false; }
