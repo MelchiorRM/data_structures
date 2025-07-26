@@ -2,6 +2,9 @@
 #include <memory>
 #include "LinkedList.hpp"
 #include "SinglyLinked.hpp"
+#include "DoublyLinked.hpp"
+#include "CircularLinked.hpp"
+
 using namespace std;
 void showMenu();
 void editMenu();
@@ -10,7 +13,9 @@ void listToListMenu();
 void selectListMenu();
 
 void editMenuHandler();
-SinglyLinked S_LIST_A, S_LIST_B;
+SinglyLinked S_LIST_A;
+DoublyLinked D_LIST_A;
+CircularLinked C_LIST_A;
 
 void showMenu(){
     cout<<"\n--- Linked List Operations Menu ---\n";
