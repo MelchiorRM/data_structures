@@ -12,7 +12,9 @@ void intermediateMenu();
 void listToListMenu();
 void selectListMenu();
 void editMenuHandler();
-
+void selectMenuHandler();
+void intermediateMenuHandler();
+void listToListMenuHandler();
 LinkedList* currentList = nullptr;
 
 void showMenu(){
@@ -27,19 +29,11 @@ void showMenu(){
     cout<<"0. Exit\n";
     cout<<"Choice: ";
 }
-void editMenu(){
-    cout<<"\n---Edit linked list---\n";
-    cout<<"1. Insert at Beginning\n";
-    cout<<"2. Insert at End\n";
-    cout<<"3. Insert at Position\n";
-    cout<<"4. Delete at Beginning\n";
-    cout<<"5. Delete at End\n";
-    cout<<"6. Delete at Position\n";
-    cout<<"7. Search for Element\n";
-    cout<<"8. Update Node by Value\n";
-    cout<<"9. Update Node by Position\n";
-    cout<<"10. Count Nodes\n";
-    cout<<"0. Back to Main Menu\n";
+void selectListMenu() {
+    cout<<"\n---Select Linked List---\n";
+    cout<<"1. Singly Linked List\n";
+    cout<<"2. Doubly Linked List\n";
+    cout<<"3. Circular Linked List\n";
     cout<<"Choice: ";
 }
 void selectListHandler() {
@@ -67,6 +61,21 @@ void selectListHandler() {
         default:
             cout << "Invalid choice.\n";
     }
+}
+void editMenu(){
+    cout<<"\n---Edit linked list---\n";
+    cout<<"1. Insert at Beginning\n";
+    cout<<"2. Insert at End\n";
+    cout<<"3. Insert at Position\n";
+    cout<<"4. Delete at Beginning\n";
+    cout<<"5. Delete at End\n";
+    cout<<"6. Delete at Position\n";
+    cout<<"7. Search for Element\n";
+    cout<<"8. Update Node by Value\n";
+    cout<<"9. Update Node by Position\n";
+    cout<<"10. Count Nodes\n";
+    cout<<"0. Back to Main Menu\n";
+    cout<<"Choice: ";
 }
 void editMenuHandler(){
     if (!currentList) {
@@ -176,9 +185,8 @@ void editMenuHandler(){
                 break;
             case 10:
                 cout<<"Count the numbers of nodes in the linked list...\n";
-                {
-                    cout<<"The current list has "<<currentList->countNodes()<<" nodes\n";
-                }
+                cout<<"The current list has "<<currentList->countNodes()<<" nodes\n";
+                break;
             case 0:
                 return;
             default:
@@ -197,6 +205,66 @@ void intermediateMenu(){
     cout<<"0. Back to Main Menu\n";
     cout<<"Choice: ";
 }
+void intermediateMenuHandler() {
+    if (!currentList) {
+        cout << "No list selected. Please create or select a list first.\n";
+        return;
+    }
+    
+    int choice;
+    while (true) {
+        intermediateMenu();
+        cin >> choice;
+        switch (choice) {
+            case 1:
+                cout << "Finding middle node...\n";
+                {
+                    int middleValue = currentList->findMiddle();
+                    if (middleValue != -1) {
+                        cout << "Middle node value: " << middleValue << "\n";
+                    } else {
+                        cout << "List is empty or has no middle node.\n";
+                    }
+                }
+                break;
+            case 2:
+                cout << "Removing duplicates...\n";
+                currentList->removeDuplicates();
+                cout << "Duplicates removed. Current list: \n";
+                currentList->display();
+                break;
+            case 3:
+                cout << "Swap two nodes...\n";
+                {
+                    int pos1, pos2;
+                    cout << "Enter first position: ";
+                    cin >> pos1;
+                    cout << "Enter second position: ";
+                    cin >> pos2;
+                    currentList->swapNodes(pos1, pos2);
+                    cout << "Nodes swapped. Current list: \n";
+                    currentList->display();
+                }
+                break;
+            case 4:
+                cout << "Reversing list...\n";
+                currentList->reverse();
+                cout << "List reversed. Current list: \n";
+                currentList->display();
+                break;
+            case 5:
+                cout << "Sorting list...\n";
+                currentList->sort();
+                cout << "List sorted. Current list: \n";
+                currentList->display();
+                break;
+            case 0:
+                return;
+            default:
+                cout << "Invalid choice.\n";
+        }
+    }
+}
 void listToListMenu(){
     cout<<"\n--- List-to-List Operations ---\n";
     cout<<"1. Concatenate Two Lists\n";
@@ -211,40 +279,6 @@ void listToListMenu(){
     cout<<"0. Back to Main Menu\n";
     cout<<"Choice: ";
 }
-void selectListMenu() {
-    cout<<"\n---Select Linked List---\n";
-    cout<<"1. Singly Linked List\n";
-    cout<<"2. Doubly Linked List\n";
-    cout<<"3. Circular Linked List\n";
-    cout<<"Choice: ";
-}
-
-void intermediateMenuHandler() {
-    int choice;
-    while (true) {
-        intermediateMenu();
-        cin >> choice;
-        switch (choice) {
-            case 1:
-                cout << "Find Middle Node: Not implemented yet.\n";
-                break;
-            case 2:
-                cout << "Remove duplicates: Not implemented yet.\n";
-                break;
-            case 3:
-                cout << "Swap two nodes: Not implemented yet.\n";
-                break;
-            case 4:
-                cout << "Reverse List: Not implemented yet.\n";
-                break;
-            case 0:
-                return;
-            default:
-                cout << "Invalid choice.\n";
-        }
-    }
-}
-
 void listToListMenuHandler() {
     int choice;
     while (true) {
@@ -313,7 +347,7 @@ int main(){
                 editMenuHandler();
                 break;
             case 5:
-                // TODO: update intermediateMenuHandler to use currentList
+                intermediateMenuHandler();
                 break;
             case 6:
                 // TODO: update listToListMenuHandler to use currentList

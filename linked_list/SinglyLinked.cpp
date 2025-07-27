@@ -147,9 +147,46 @@ void SinglyLinked::updateNodeValue(int oldValue, int newValue){
     }
     cout<<"Value not found...\n";
 }
-void SinglyLinked::reverse() {}
-int SinglyLinked::findMiddle() const { return 0; }
-void SinglyLinked::removeDuplicates() {}
+void SinglyLinked::reverse() {
+    Node* prev=nullptr;
+    Node* next=nullptr;
+    Node* temp=head;
+    while(temp!=nullptr){
+        next=temp->next_data;
+        temp->next_data=prev;
+        prev=temp;
+        temp=next;
+    }
+    head=prev;
+}
+int SinglyLinked::findMiddle() const {
+    if(head==nullptr){
+        return -1;
+    }
+    Node* slow=head;
+    Node* fast=head;
+    while(fast->next_data!=nullptr && fast->next_data->next_data !=nullptr){
+        slow=slow->next_data;
+        fast=fast->next_data->next_data;
+    }
+    return slow->data;
+}
+void SinglyLinked::removeDuplicates() {
+    Node* temp=head;
+    while(temp!=nullptr){
+        Node* checker=temp;
+        while(checker->next_data!=nullptr){
+            if(checker->next_data->data==temp->data){
+                Node* currentNode = checker->next_data;
+                checker->next_data = currentNode->next_data;
+                delete currentNode;
+            } else {
+                checker = checker->next_data;
+            }
+        }
+        temp=temp->next_data;
+    }
+}
 void SinglyLinked::swapNodes(int pos1, int pos2) {}
 int SinglyLinked::countNodes() const {
     int count = 0;
