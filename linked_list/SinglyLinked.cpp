@@ -187,7 +187,45 @@ void SinglyLinked::removeDuplicates() {
         temp=temp->next_data;
     }
 }
-void SinglyLinked::swapNodes(int pos1, int pos2) {}
+void SinglyLinked::swapNodes(int pos1, int pos2) {
+    if (pos1 == pos2) {
+        cout << "Positions are the same, no swap needed...\n";
+        return;
+    }
+    Node* prev1 = nullptr;
+    Node* prev2 = nullptr;
+    Node* temp1=head;
+    Node* temp2=head;
+    int count = 0;
+    while (temp1 && count < pos1) {
+        prev1 = temp1;
+        temp1 = temp1->next_data;
+        count++;
+    }
+    count = 0;
+    while (temp2 && count < pos2) {
+        prev2 = temp2;
+        temp2 = temp2->next_data;
+        count++;
+    }
+    if (!temp1 || !temp2) {
+        cout << "One or both positions are out of range...\n";
+        return;
+    }
+    if (prev1) {
+        prev1->next_data = temp2;
+    } else {
+        head = temp2;
+    }
+    if (prev2) {
+        prev2->next_data = temp1;
+    } else {
+        head = temp1;
+    }
+    Node* temp = temp1->next_data;
+    temp1->next_data = temp2->next_data;
+    temp2->next_data = temp;
+}
 int SinglyLinked::countNodes() const {
     int count = 0;
     Node* temp=head;
