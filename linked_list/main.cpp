@@ -272,7 +272,7 @@ void listToListMenu(){
     cout<<"3. Merge Two Sorted Lists\n";
     cout<<"4. Compare Two Lists\n";
     cout<<"5. Intersection of Two Lists\n";
-    cout<<"6. Union of Two Lists\n";
+    cout<<"6. Union of Two Lists \n";
     cout<<"7. Difference of Two Lists\n";
     cout<<"8. Alternate Merge\n";
     cout<<"9. Swap Contents\n";
@@ -286,7 +286,7 @@ void listToListMenuHandler() {
         cin >> choice;
         switch (choice) {
             case 1:
-                cout << "Concatenate Two Lists: Not implemented yet.\n";
+                cout << "Concatenate Two Lists: Not implemented yet...\n";
                 break;
             case 2:
                 cout << "Copy/Clone a List: Not implemented yet.\n";

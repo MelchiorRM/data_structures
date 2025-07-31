@@ -70,7 +70,7 @@ void SinglyLinked::deleteAtEnd(){
 }
 void SinglyLinked::deleteAtPosition(int position){
     if(head==nullptr){
-        cout<<"Empty list, nothing to delete...\n";
+         cout<<"Empty list, nothing to delete...\n";
         return;
     }
     if(position==0){
