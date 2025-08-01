@@ -267,7 +267,7 @@ void intermediateMenuHandler() {
 }
 void listToListMenu(){
     cout<<"\n--- List-to-List Operations ---\n";
-    cout<<"1. Concatenate Two Lists\n";
+    cout<<"1. Concatenate Two Lists \n";
     cout<<"2. Copy/Clone a List\n";
     cout<<"3. Merge Two Sorted Lists\n";
     cout<<"4. Compare Two Lists\n";
