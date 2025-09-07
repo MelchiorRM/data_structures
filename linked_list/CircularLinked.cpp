@@ -1,8 +1,10 @@
 #include "CircularLinked.hpp"
 #include <iostream>
+#include <cstddef>
+#include <cstdlib>
 using namespace std;
 
-CircularLinked::CircularLinked() : head(nullptr) {}
+CircularLinked::CircularLinked() : head(NULL) {}
 CircularLinked::~CircularLinked() { free(); }
 
 void CircularLinked::insertAtBeginning(int value) {}
@@ -22,13 +24,13 @@ void CircularLinked::removeDuplicates() {}
 void CircularLinked::swapNodes(int pos1, int pos2) {}
 int CircularLinked::countNodes() const { return 0; }
 void CircularLinked::sort() {}
-CircularLinked* CircularLinked::clone() const { return nullptr; }
+CircularLinked* CircularLinked::clone() const { return NULL; }
 bool CircularLinked::compare(const LinkedList& other) const { return false; }
-CircularLinked* CircularLinked::mergeSorted(const LinkedList& other) const { return nullptr; }
+CircularLinked* CircularLinked::mergeSorted(const LinkedList& other) const { return NULL; }
 void CircularLinked::concatenate(const LinkedList& other) {}
-CircularLinked* CircularLinked::intersection(const LinkedList& other) const { return nullptr; }
-CircularLinked* CircularLinked::unionWith(const LinkedList& other) const { return nullptr; }
-CircularLinked* CircularLinked::difference(const LinkedList& other) const { return nullptr; }
-CircularLinked* CircularLinked::alternateMerge(const LinkedList& other) const { return nullptr; }
+CircularLinked* CircularLinked::intersection(const LinkedList& other) const { return NULL; }
+CircularLinked* CircularLinked::unionWith(const LinkedList& other) const { return NULL; }
+CircularLinked* CircularLinked::difference(const LinkedList& other) const { return NULL; }
+CircularLinked* CircularLinked::alternateMerge(const LinkedList& other) const { return NULL; }
 void CircularLinked::swapContents(LinkedList& other) {}
 void CircularLinked::free() {}

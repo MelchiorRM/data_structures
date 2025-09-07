@@ -1,8 +1,10 @@
 #include <iostream>
+#include <cstddef>
+#include <cstdlib>
 #include "SinglyLinked.hpp"
 using namespace std;
 
-SinglyLinked::SinglyLinked() : head(nullptr) {}
+SinglyLinked::SinglyLinked() : head(NULL) {}
 SinglyLinked::~SinglyLinked() {
     free();
 }
@@ -13,12 +15,12 @@ void SinglyLinked::insertAtBeginning(int value){
 }
 void SinglyLinked::insertAtEnd(int value){
     Node* newNode = new Node(value);
-    if(head == nullptr) {
+    if(head == NULL) {
         head = newNode;
         return;
     }
     Node* temp = head;
-    while(temp->next_data != nullptr){
+    while(temp->next_data != NULL){
         temp = temp->next_data;
     }
     temp->next_data = newNode;
@@ -31,10 +33,10 @@ void SinglyLinked::insertAtPosition(int value, int position){
         return;
     }
     Node* temp=head;
-    for(int i=0;i<position-1 && temp !=nullptr;i++){
+    for(int i=0;i<position-1 && temp !=NULL;i++){
         temp=temp->next_data;
     }
-    if(temp==nullptr){
+    if(temp==NULL){
         cout<<"Position is out of range...\n";
         delete newNode;
         return;
@@ -43,7 +45,7 @@ void SinglyLinked::insertAtPosition(int value, int position){
     temp->next_data=newNode;
 }
 void SinglyLinked::deleteAtBeginning(){
-    if(head==nullptr){
+    if(head==NULL){
         cout<<"Empty list, nothing to delete...\n";
         return;
     }
@@ -52,24 +54,24 @@ void SinglyLinked::deleteAtBeginning(){
     delete temp;
 }
 void SinglyLinked::deleteAtEnd(){
-    if(head==nullptr){
+    if(head==NULL){
         cout<<"Empty list, nothing to delete...\n";
         return;
     }
-    if(head->next_data==nullptr){
+    if(head->next_data==NULL){
         delete head;
-        head = nullptr;
+        head = NULL;
         return;
     }
     Node* temp = head;
-    while(temp->next_data->next_data !=nullptr){
+    while(temp->next_data->next_data !=NULL){
         temp = temp->next_data;
     }
     delete temp->next_data;
-    temp->next_data=nullptr;
+    temp->next_data=NULL;
 }
 void SinglyLinked::deleteAtPosition(int position){
-    if(head==nullptr){
+    if(head==NULL){
          cout<<"Empty list, nothing to delete...\n";
         return;
     }
@@ -78,10 +80,10 @@ void SinglyLinked::deleteAtPosition(int position){
         return;
     }
     Node* temp=head;
-    for(int i=0;i<position-1 && temp !=nullptr;i++){
+    for(int i=0;i<position-1 && temp !=NULL;i++){
         temp=temp->next_data;
     }
-    if(temp->next_data==nullptr){
+    if(temp->next_data==NULL){
         cout<<"Position is out of range...\n";
         return;
     }
@@ -90,7 +92,7 @@ void SinglyLinked::deleteAtPosition(int position){
     delete nodeToDelete;
 }
 void SinglyLinked::createList(int size) {
-    Node* head = nullptr;
+    Node* head = NULL;
     int value;
     cout<<"Enter the size of the list: ";
     cin>>size;
@@ -101,7 +103,7 @@ void SinglyLinked::createList(int size) {
     }
 }
 void SinglyLinked::display() const {
-    if(head==nullptr) {
+    if(head==NULL) {
         cout<<"The list is empty\n";
         return;
     }
@@ -115,7 +117,7 @@ void SinglyLinked::display() const {
 }
 bool SinglyLinked::search(int value) const{
     const Node* temp = head;
-    while(temp!=nullptr){
+    while(temp!=NULL){
         if(temp->data==value){
             return true;
         }
@@ -126,11 +128,11 @@ bool SinglyLinked::search(int value) const{
 void SinglyLinked::updateAtPosition(int position, int newValue){
     Node* temp=head;
     int tempPosition=0;
-    while(temp!=nullptr && tempPosition<position){
+    while(temp!=NULL && tempPosition<position){
         temp=temp->next_data;
         tempPosition++;
     }
-    if(temp!=nullptr){
+    if(temp!=NULL){
         temp->data=newValue;
     } else {
         cout<<"Position is out range...\n";
@@ -138,7 +140,7 @@ void SinglyLinked::updateAtPosition(int position, int newValue){
 }
 void SinglyLinked::updateNodeValue(int oldValue, int newValue){
     Node* temp=head;
-    while(temp!=nullptr){
+    while(temp!=NULL){
         if(temp->data=oldValue){
             temp->data=newValue;
             return;
@@ -148,10 +150,10 @@ void SinglyLinked::updateNodeValue(int oldValue, int newValue){
     cout<<"Value not found...\n";
 }
 void SinglyLinked::reverse() {
-    Node* prev=nullptr;
-    Node* next=nullptr;
+    Node* prev=NULL;
+    Node* next=NULL;
     Node* temp=head;
-    while(temp!=nullptr){
+    while(temp!=NULL){
         next=temp->next_data;
         temp->next_data=prev;
         prev=temp;
@@ -160,12 +162,12 @@ void SinglyLinked::reverse() {
     head=prev;
 }
 int SinglyLinked::findMiddle() const {
-    if(head==nullptr){
+    if(head==NULL){
         return -1;
     }
     Node* slow=head;
     Node* fast=head;
-    while(fast->next_data!=nullptr && fast->next_data->next_data !=nullptr){
+    while(fast->next_data!=NULL && fast->next_data->next_data !=NULL){
         slow=slow->next_data;
         fast=fast->next_data->next_data;
     }
@@ -173,9 +175,9 @@ int SinglyLinked::findMiddle() const {
 }
 void SinglyLinked::removeDuplicates() {
     Node* temp=head;
-    while(temp!=nullptr){
+    while(temp!=NULL){
         Node* checker=temp;
-        while(checker->next_data!=nullptr){
+        while(checker->next_data!=NULL){
             if(checker->next_data->data==temp->data){
                 Node* currentNode = checker->next_data;
                 checker->next_data = currentNode->next_data;
@@ -192,8 +194,8 @@ void SinglyLinked::swapNodes(int pos1, int pos2) {
         cout << "Positions are the same, no swap needed...\n";
         return;
     }
-    Node* prev1 = nullptr;
-    Node* prev2 = nullptr;
+    Node* prev1 = NULL;
+    Node* prev2 = NULL;
     Node* temp1=head;
     Node* temp2=head;
     int count = 0;
@@ -229,25 +231,25 @@ void SinglyLinked::swapNodes(int pos1, int pos2) {
 int SinglyLinked::countNodes() const {
     int count = 0;
     Node* temp=head;
-    while(temp!=nullptr){
+    while(temp!=NULL){
         count++;
         temp=temp->next_data;
     }
     return count;
 }
 void SinglyLinked::sort() {}
-SinglyLinked* SinglyLinked::clone() const { return nullptr; }
+SinglyLinked* SinglyLinked::clone() const { return NULL; }
 bool SinglyLinked::compare(const LinkedList& other) const { return false; }
-SinglyLinked* SinglyLinked::mergeSorted(const LinkedList& other) const { return nullptr; }
+SinglyLinked* SinglyLinked::mergeSorted(const LinkedList& other) const { return NULL; }
 void SinglyLinked::concatenate(const LinkedList& other) {}
-SinglyLinked* SinglyLinked::intersection(const LinkedList& other) const { return nullptr; }
-SinglyLinked* SinglyLinked::unionWith(const LinkedList& other) const { return nullptr; }
-SinglyLinked* SinglyLinked::difference(const LinkedList& other) const { return nullptr; }
-SinglyLinked* SinglyLinked::alternateMerge(const LinkedList& other) const { return nullptr; }
+SinglyLinked* SinglyLinked::intersection(const LinkedList& other) const { return NULL; }
+SinglyLinked* SinglyLinked::unionWith(const LinkedList& other) const { return NULL; }
+SinglyLinked* SinglyLinked::difference(const LinkedList& other) const { return NULL; }
+SinglyLinked* SinglyLinked::alternateMerge(const LinkedList& other) const { return NULL; }
 void SinglyLinked::swapContents(LinkedList& other) {}
 void SinglyLinked::free(){
     Node* temp;
-    while(head!=nullptr) {
+    while(head!=NULL) {
         temp = head;
         head = head->next_data;
         delete temp;

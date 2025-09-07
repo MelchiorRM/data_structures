@@ -1,5 +1,7 @@
 #include <iostream>
 #include <memory>
+#include <cstddef>
+#include <cstdlib>
 #include "LinkedList.hpp"
 #include "SinglyLinked.hpp"
 #include "DoublyLinked.hpp"
@@ -15,7 +17,7 @@ void editMenuHandler();
 void selectMenuHandler();
 void intermediateMenuHandler();
 void listToListMenuHandler();
-LinkedList* currentList = nullptr;
+LinkedList* currentList = NULL;
 
 void showMenu(){
     cout<<"\n--- Linked List Operations Menu ---\n";
@@ -43,7 +45,7 @@ void selectListHandler() {
     if (currentList) {
         currentList->free();
         delete currentList;
-        currentList = nullptr;
+        currentList = NULL;
     }
     switch(choice) {
         case 1:
@@ -356,7 +358,7 @@ int main(){
                 if (currentList) {
                     currentList->free();
                     delete currentList;
-                    currentList = nullptr;
+                    currentList = NULL;
                     cout << "Current list deleted.\n";
                 } else {
                     cout << "No list to delete.\n";

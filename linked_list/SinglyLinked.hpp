@@ -9,7 +9,7 @@ class SinglyLinked : public LinkedList {
         {
             int data;
             Node* next_data;
-            Node(int value): data(value), next_data(nullptr) {}
+            Node(int value): data(value), next_data(NULL) {}
         };
         Node* head;
     public:

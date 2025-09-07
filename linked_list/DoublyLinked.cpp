@@ -1,8 +1,10 @@
 #include "DoublyLinked.hpp"
 #include <iostream>
+#include <cstddef>
+#include <cstdlib>
 using namespace std;
 
-DoublyLinked::DoublyLinked() : head(nullptr), tail(nullptr) {}
+DoublyLinked::DoublyLinked() : head(NULL), tail(NULL) {}
 DoublyLinked::~DoublyLinked() { free(); }
 
 void DoublyLinked::insertAtBeginning(int value) {}
@@ -22,13 +24,13 @@ void DoublyLinked::removeDuplicates() {}
 void DoublyLinked::swapNodes(int pos1, int pos2) {}
 int DoublyLinked::countNodes() const { return 0; }
 void DoublyLinked::sort() {}
-DoublyLinked* DoublyLinked::clone() const { return nullptr; }
+DoublyLinked* DoublyLinked::clone() const { return NULL; }
 bool DoublyLinked::compare(const LinkedList& other) const { return false; }
-DoublyLinked* DoublyLinked::mergeSorted(const LinkedList& other) const { return nullptr; }
+DoublyLinked* DoublyLinked::mergeSorted(const LinkedList& other) const { return NULL; }
 void DoublyLinked::concatenate(const LinkedList& other) {}
-DoublyLinked* DoublyLinked::intersection(const LinkedList& other) const { return nullptr; }
-DoublyLinked* DoublyLinked::unionWith(const LinkedList& other) const { return nullptr; }
-DoublyLinked* DoublyLinked::difference(const LinkedList& other) const { return nullptr; }
-DoublyLinked* DoublyLinked::alternateMerge(const LinkedList& other) const { return nullptr; }
+DoublyLinked* DoublyLinked::intersection(const LinkedList& other) const { return NULL; }
+DoublyLinked* DoublyLinked::unionWith(const LinkedList& other) const { return NULL; }
+DoublyLinked* DoublyLinked::difference(const LinkedList& other) const { return NULL; }
+DoublyLinked* DoublyLinked::alternateMerge(const LinkedList& other) const { return NULL; }
 void DoublyLinked::swapContents(LinkedList& other) {}
 void DoublyLinked::free() {}

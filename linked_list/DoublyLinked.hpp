@@ -9,7 +9,7 @@ class DoublyLinked : public LinkedList {
             int data;
             DoublyNode* prev_data;
             DoublyNode* next_data;
-            DoublyNode(int value): data(value), prev_data(nullptr), next_data(nullptr) {}
+            DoublyNode(int value): data(value), prev_data(NULL), next_data(NULL) {}
         };
         DoublyNode* head;
         DoublyNode* tail;
