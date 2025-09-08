@@ -14,13 +14,10 @@ StaticArray::StaticArray(int initialCapacity) : data(NULL), size(0), capacity(0)
         capacity = initialCapacity;
     }
 }
-
-// Destructor
 StaticArray::~StaticArray() {
     delete[] data;
 }
 
-// Basic operations - TO BE IMPLEMENTED
 void StaticArray::insertAtBeginning(int value) {
     //2 size tests
     if (size >= capacity) {
@@ -38,25 +35,50 @@ void StaticArray::insertAtBeginning(int value) {
     size++;
     std::cout << "Value " << value << " inserted at beginning successfully!\n";
 }
-
 void StaticArray::insertAtEnd(int value) {
     if (size >= capacity) {
-        std::cout << "Error: Array is full! Cannot insert at beginning.\n";
+        std::cout << "Error: Array is full!\n";
+        return;
+    }
+    if (data == NULL) {
+        std::cout << "Error: Array not initialized! Please create array first.\n";
         return;
     }
     data[size]=value;
     size++;
     std::cout << "Value " << value << " inserted at ending successfully!\n";
 }
-
 void StaticArray::insertAtPosition(int value, int position) {
-    // TODO: Implement insertion at specific position
-    // Validate position, shift elements, and insert
+    if (size >= capacity) {
+        std::cout << "Error: Array is full!\n";
+        return;
+    }
+    if (data == NULL) {
+        std::cout << "Error: Array not initialized! Please create array first.\n";
+        return;
+    }
+    if (position<0 || position>size) {
+        std::cout <<"Position is out of range...\n";
+        return;
+    }
+    for (int i = size; i > position; i--) {
+        data[i] = data[i - 1];
+    }
+    data[position] = value;
+    size++;
+    std::cout << "Value " << value << " inserted at position " << position << " successfully!\n";
 }
-
 void StaticArray::deleteAtBeginning() {
-    // TODO: Implement deletion at beginning
-    // Shift all elements to the left
+    if (size<=0){
+        std::cout<< "Array is empty...\n";
+        return;
+    }
+    for(int i=0;i<size-1;i++){
+        data[i]=data[i+1];
+    }
+    size--;
+    data[size]=NULL;
+    std::cout<< "Value deleted at beginning successfully!\n";
 }
 
 void StaticArray::deleteAtEnd() {

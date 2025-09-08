@@ -21,7 +21,7 @@ void intermediateMenuHandler();
 void arrayToArrayMenuHandler();
 
 // Global variable to hold current array
-Array* currentArray = nullptr;
+Array* currentArray = NULL;
 
 void showMenu() {
     cout << "\n--- Array Operations Menu ---\n";
@@ -54,7 +54,7 @@ void selectArrayHandler() {
     if (currentArray) {
         currentArray->clear();
         delete currentArray;
-        currentArray = nullptr;
+        currentArray = NULL;
     }
     
     switch(choice) {
@@ -397,7 +397,7 @@ int main() {
                 if (currentArray) {
                     currentArray->clear();
                     delete currentArray;
-                    currentArray = nullptr;
+                    currentArray = NULL;
                     cout << "Array deleted successfully!\n";
                 } else {
                     cout << "No array to delete!\n";
