@@ -82,13 +82,26 @@ void StaticArray::deleteAtBeginning() {
 }
 
 void StaticArray::deleteAtEnd() {
-    // TODO: Implement deletion at end
-    // Simply decrement size
+    if (size<=0){
+        std::cout<< "Array is empty...\n";
+        return;
+    }
+    size--;
 }
 
 void StaticArray::deleteAtPosition(int position) {
-    // TODO: Implement deletion at specific position
-    // Validate position, shift elements left
+    if (size<=0){
+        std::cout<< "Array is empty...\n";
+        return;
+    }
+    if (position<0 || position>=size) {
+        std::cout <<"Position is out of range...\n";
+        return;
+    }
+    for(int i=position; i<size-1; i++){
+        data[i]=data[i+1];
+    }
+    size--;
 }
 
 void StaticArray::createArray(int size) {
