@@ -105,13 +105,45 @@ void StaticArray::deleteAtPosition(int position) {
 }
 
 void StaticArray::createArray(int size) {
-    // TODO: Implement array creation
-    // Allocate memory and initialize
+    if (size <= 0 || size > MAX_SIZE) {
+        std::cout << "Error: Invalid size! Size must be between 1 and " << MAX_SIZE << std::endl;
+        return;
+    }
+    if (data != NULL) {
+        delete[] data;
+    }
+    data = new int[size];
+    if (data == NULL) {
+        std::cout << "Error: Memory allocation failed!" << std::endl;
+        return;
+    }
+    this->size = 0;
+    this->capacity = size;
+    
+    for (int i = 0; i < size; i++) {
+        data[i] = 0;
+    }
+    std::cout << "Array created successfully with capacity " << size << std::endl;
 }
 
 void StaticArray::display() const {
-    // TODO: Implement display functionality
-    // Print all elements in the array
+    if (data == NULL) {
+        std::cout << "Error: Array not initialized! Please create array first." << std::endl;
+        return;
+    }
+    if (size == 0) {
+        std::cout << "Array is empty." << std::endl;
+        return;
+    }
+    std::cout << "Array elements: [";
+    for (int i = 0; i < size; i++) {
+        std::cout << data[i];
+        if (i < size - 1) {
+            std::cout << ", ";
+        }
+    }
+    std::cout << "]" << std::endl;
+    std::cout << "Size: " << size << ", Capacity: " << capacity << std::endl;
 }
 
 bool StaticArray::search(int value) const {
