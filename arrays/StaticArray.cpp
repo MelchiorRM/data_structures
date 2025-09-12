@@ -147,8 +147,11 @@ void StaticArray::display() const {
 }
 
 bool StaticArray::search(int value) const {
-    // TODO: Implement linear search
-    // Return true if value found, false otherwise
+    for(int i=0;i<size;i++){
+        if(data[i]==value){
+            return true;
+        }
+    }
     return false;
 }
 
