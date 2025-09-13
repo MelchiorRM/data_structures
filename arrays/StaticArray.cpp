@@ -164,17 +164,30 @@ void StaticArray::updateAtPosition(int position, int newValue) {
 }
 
 void StaticArray::updateValue(int oldValue, int newValue) {
+    bool found = false;
     for(int i=0;i<size;i++){
         if(data[i]==oldValue){
             data[i]=newValue;
+            found = true;
             return;
         }
+    }
+    if(!found){
+        std::cout<<"Value not found...\n";
     }
 }
 
 void StaticArray::reverse() {
-    // TODO: Implement array reversal
-    // Reverse elements in place
+    if (size<=1) return;
+    int p_start=0;
+    int p_end=size-1;
+    while(p_start<p_end){
+        int temp=data[p_start];
+        data[p_start]=data[p_end];
+        data[p_end]=temp;
+        p_start++;
+        p_end--;
+    }
 }
 
 int StaticArray::findMiddle() const {
