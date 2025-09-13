@@ -156,13 +156,20 @@ bool StaticArray::search(int value) const {
 }
 
 void StaticArray::updateAtPosition(int position, int newValue) {
-    // TODO: Implement update at specific position
-    // Validate position and update value
+    if(position<0 || position>=size){
+        std::cout<<"Position is out of range...\n";
+        return;
+    }
+    data[position]=newValue;
 }
 
 void StaticArray::updateValue(int oldValue, int newValue) {
-    // TODO: Implement update by value
-    // Find first occurrence and update
+    for(int i=0;i<size;i++){
+        if(data[i]==oldValue){
+            data[i]=newValue;
+            return;
+        }
+    }
 }
 
 void StaticArray::reverse() {
