@@ -191,29 +191,86 @@ void StaticArray::reverse() {
 }
 
 int StaticArray::findMiddle() const {
-    // TODO: Implement find middle element
-    // Return middle element value
-    return 0;
+    if (data == NULL || size == 0) {
+        std::cout << "Error: Array is empty or not initialized!" << std::endl;
+        return 0;
+    }
+    return data[size / 2];
 }
 
 void StaticArray::removeDuplicates() {
-    // TODO: Implement duplicate removal
-    // Remove duplicate elements while maintaining order
+    if (data == NULL || size <= 1) {
+        return; // Nothing to remove if array is empty or has only one element
+    }
+    
+    int newSize = 0;
+    for (int i = 0; i < size; i++) {
+        bool isDuplicate = false;
+        for (int j = 0; j < newSize; j++) {
+            if (data[i] == data[j]) {
+                isDuplicate = true;
+                break;
+            }
+        }
+        if (!isDuplicate) {
+            data[newSize] = data[i];
+            newSize++;
+        }
+    }
+    size = newSize;
+    std::cout << "Duplicates removed successfully! New size: " << size << std::endl;
 }
 
 void StaticArray::swapElements(int pos1, int pos2) {
-    // TODO: Implement element swapping
-    // Swap elements at given positions
+    if (data == NULL || size == 0) {
+        std::cout << "Error: Array is empty or not initialized!" << std::endl;
+        return;
+    }
+    
+    if (pos1 < 0 || pos1 >= size || pos2 < 0 || pos2 >= size) {
+        std::cout << "Error: Invalid positions! Positions must be between 0 and " << (size - 1) << std::endl;
+        return;
+    }
+    
+    if (pos1 == pos2) {
+        std::cout << "Warning: Same positions provided, no swap needed." << std::endl;
+        return;
+    }
+    
+    int temp = data[pos1];
+    data[pos1] = data[pos2];
+    data[pos2] = temp;
+    
+    std::cout << "Elements at positions " << pos1 << " and " << pos2 << " swapped successfully!" << std::endl;
 }
 
 int StaticArray::getSize() const {
-    // TODO: Return current size
     return size;
 }
 
 void StaticArray::sort() {
-    // TODO: Implement sorting algorithm
-    // Sort array in ascending order
+    if (data == NULL || size <= 1) {
+        return;
+    }
+    
+    // Bubble sort implementation
+    for (int i = 0; i < size - 1; i++) {
+        bool swapped = false;
+        for (int j = 0; j < size - i - 1; j++) {
+            if (data[j] > data[j + 1]) {
+                // Swap elements
+                int temp = data[j];
+                data[j] = data[j + 1];
+                data[j + 1] = temp;
+                swapped = true;
+            }
+        }
+        if (!swapped) {
+            break;
+        }
+    }
+    
+    std::cout << "Array sorted successfully in ascending order!" << std::endl;
 }
 
 // Advanced operations - TO BE IMPLEMENTED
