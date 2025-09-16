@@ -200,7 +200,7 @@ int StaticArray::findMiddle() const {
 
 void StaticArray::removeDuplicates() {
     if (data == NULL || size <= 1) {
-        return; // Nothing to remove if array is empty or has only one element
+        return;
     }
     
     int newSize = 0;
