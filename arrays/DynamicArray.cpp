@@ -23,26 +23,18 @@ DynamicArray::~DynamicArray() {
 // Basic operations - TO BE IMPLEMENTED
 void DynamicArray::insertAtBeginning(int value) {
     ensureCapacity(size + 1);
-    
-    // Shift all elements to the right
     for (int i = size; i > 0; i--) {
         data[i] = data[i - 1];
     }
-    
-    // Insert at beginning
     data[0] = value;
     size++;
-    
     std::cout << "Value " << value << " inserted at beginning successfully!" << std::endl;
 }
 
 void DynamicArray::insertAtEnd(int value) {
     ensureCapacity(size + 1);
-    
-    // Insert at end
     data[size] = value;
     size++;
-    
     std::cout << "Value " << value << " inserted at end successfully!" << std::endl;
 }
 
@@ -51,18 +43,12 @@ void DynamicArray::insertAtPosition(int value, int position) {
         std::cout << "Error: Invalid position! Position must be between 0 and " << size << std::endl;
         return;
     }
-    
     ensureCapacity(size + 1);
-    
-    // Shift elements to the right from position onwards
     for (int i = size; i > position; i--) {
         data[i] = data[i - 1];
     }
-    
-    // Insert at position
     data[position] = value;
-    size++;
-    
+    size++; 
     std::cout << "Value " << value << " inserted at position " << position << " successfully!" << std::endl;
 }
 
@@ -71,8 +57,6 @@ void DynamicArray::deleteAtBeginning() {
         std::cout << "Error: Array is empty! Cannot delete from beginning." << std::endl;
         return;
     }
-    
-    // Shift all elements to the left
     for (int i = 0; i < size - 1; i++) {
         data[i] = data[i + 1];
     }
@@ -86,7 +70,6 @@ void DynamicArray::deleteAtEnd() {
         std::cout << "Error: Array is empty! Cannot delete from end." << std::endl;
         return;
     }
-    
     size--;
     std::cout << "Element deleted from end successfully!" << std::endl;
 }
@@ -96,17 +79,13 @@ void DynamicArray::deleteAtPosition(int position) {
         std::cout << "Error: Array is empty! Cannot delete from any position." << std::endl;
         return;
     }
-    
     if (position < 0 || position >= size) {
         std::cout << "Error: Invalid position! Position must be between 0 and " << (size - 1) << std::endl;
         return;
     }
-    
-    // Shift elements to the left from position onwards
     for (int i = position; i < size - 1; i++) {
         data[i] = data[i + 1];
     }
-    
     size--;
     std::cout << "Element deleted from position " << position << " successfully!" << std::endl;
 }
@@ -116,27 +95,19 @@ void DynamicArray::createArray(int size) {
         std::cout << "Error: Invalid size! Size must be positive." << std::endl;
         return;
     }
-    
-    // Clean up existing data
     if (data != NULL) {
         delete[] data;
     }
-    
-    // Allocate new memory
     data = new int[size];
     if (data == NULL) {
         std::cout << "Error: Memory allocation failed!" << std::endl;
         return;
     }
-    
     this->size = 0;
     this->capacity = size;
-    
-    // Initialize with zeros
     for (int i = 0; i < size; i++) {
         data[i] = 0;
     }
-    
     std::cout << "Dynamic array created successfully with capacity " << size << std::endl;
 }
 
@@ -145,12 +116,10 @@ void DynamicArray::display() const {
         std::cout << "Error: Array not initialized! Please create array first." << std::endl;
         return;
     }
-    
     if (size == 0) {
         std::cout << "Array is empty." << std::endl;
         return;
     }
-    
     std::cout << "Array elements: [";
     for (int i = 0; i < size; i++) {
         std::cout << data[i];
@@ -166,7 +135,6 @@ bool DynamicArray::search(int value) const {
     if (data == NULL || size == 0) {
         return false;
     }
-    
     for (int i = 0; i < size; i++) {
         if (data[i] == value) {
             return true;
@@ -180,12 +148,10 @@ void DynamicArray::updateAtPosition(int position, int newValue) {
         std::cout << "Error: Array is empty or not initialized!" << std::endl;
         return;
     }
-    
     if (position < 0 || position >= size) {
         std::cout << "Error: Invalid position! Position must be between 0 and " << (size - 1) << std::endl;
         return;
-    }
-    
+    }    
     data[position] = newValue;
     std::cout << "Element at position " << position << " updated to " << newValue << " successfully!" << std::endl;
 }
@@ -194,8 +160,7 @@ void DynamicArray::updateValue(int oldValue, int newValue) {
     if (data == NULL || size == 0) {
         std::cout << "Error: Array is empty or not initialized!" << std::endl;
         return;
-    }
-    
+    }    
     bool found = false;
     for (int i = 0; i < size; i++) {
         if (data[i] == oldValue) {
@@ -204,8 +169,7 @@ void DynamicArray::updateValue(int oldValue, int newValue) {
             std::cout << "First occurrence of " << oldValue << " updated to " << newValue << " at position " << i << std::endl;
             return;
         }
-    }
-    
+    }    
     if (!found) {
         std::cout << "Value " << oldValue << " not found in array!" << std::endl;
     }
@@ -214,19 +178,16 @@ void DynamicArray::updateValue(int oldValue, int newValue) {
 void DynamicArray::reverse() {
     if (data == NULL || size <= 1) {
         return;
-    }
-    
+    }    
     int start = 0;
-    int end = size - 1;
-    
+    int end = size - 1;    
     while (start < end) {
         int temp = data[start];
         data[start] = data[end];
         data[end] = temp;
         start++;
         end--;
-    }
-    
+    }    
     std::cout << "Array reversed successfully!" << std::endl;
 }
 
@@ -241,8 +202,7 @@ int DynamicArray::findMiddle() const {
 void DynamicArray::removeDuplicates() {
     if (data == NULL || size <= 1) {
         return;
-    }
-    
+    }    
     int newSize = 0;
     for (int i = 0; i < size; i++) {
         bool isDuplicate = false;
@@ -265,22 +225,18 @@ void DynamicArray::swapElements(int pos1, int pos2) {
     if (data == NULL || size == 0) {
         std::cout << "Error: Array is empty or not initialized!" << std::endl;
         return;
-    }
-    
+    }    
     if (pos1 < 0 || pos1 >= size || pos2 < 0 || pos2 >= size) {
         std::cout << "Error: Invalid positions! Positions must be between 0 and " << (size - 1) << std::endl;
         return;
-    }
-    
+    }    
     if (pos1 == pos2) {
         std::cout << "Warning: Same positions provided, no swap needed." << std::endl;
         return;
-    }
-    
+    }    
     int temp = data[pos1];
     data[pos1] = data[pos2];
-    data[pos2] = temp;
-    
+    data[pos2] = temp;    
     std::cout << "Elements at positions " << pos1 << " and " << pos2 << " swapped successfully!" << std::endl;
 }
 
@@ -291,9 +247,7 @@ int DynamicArray::getSize() const {
 void DynamicArray::sort() {
     if (data == NULL || size <= 1) {
         return;
-    }
-    
-    // Bubble sort implementation
+    }    
     for (int i = 0; i < size - 1; i++) {
         bool swapped = false;
         for (int j = 0; j < size - i - 1; j++) {
@@ -307,8 +261,7 @@ void DynamicArray::sort() {
         if (!swapped) {
             break;
         }
-    }
-    
+    }    
     std::cout << "Array sorted successfully in ascending order!" << std::endl;
 }
 
